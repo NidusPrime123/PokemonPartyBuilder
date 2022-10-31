@@ -5,9 +5,10 @@ export default {
 </script>
 
 <template>
-  <h1>Hello world</h1>
+  <div class="page">
+    <router-view />
+  </div>
 </template>
 
 <style scoped>
-
 </style>

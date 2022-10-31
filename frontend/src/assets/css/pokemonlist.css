@@ -1,0 +1,396 @@
+.page-ctn {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url("../Pokeball-bg.png");
+    background-size: cover;
+    justify-content: center;
+}
+
+#page-btn-container button {
+    position: relative;
+    left: 82%;
+    height: 50px;
+    width: 200px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 10px 11px 47px 2px rgba(0, 0, 0, 0.4);
+    color: purple;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+#page-btn-container button:hover {
+    border-style: inset;
+    box-shadow: 10px 11px 47px 2px rgba(0, 0, 0, 0.6);
+}
+
+#page-btn-container i {
+    margin-left: 5px;
+}
+
+#selection-party-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+hr {
+    width: 95%;
+}
+
+#selection-container {
+    width: 1010px;
+    height: 1200px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin-right: 50px;
+    box-shadow: 10px 11px 47px 2px rgba(0, 0, 0, 0.4);
+}
+
+#title {
+    display: flex;
+    width: 100%;
+    height: 75px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px 20px 0 0px;
+    background-color: darkblue;
+    margin-bottom: 20px;
+}
+
+#title h2 {
+    color: white;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#title img {
+    height: 70px;
+    width: 70px;
+}
+
+#sort-container label {
+    margin-right: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#type-sort-ctn,
+#name-search-ctn {
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+#type-sort-ctn select,
+#type-sort-ctn option {
+    font-size: 16px;
+    height: 25px;
+    width: max-content;
+    text-align: center;
+}
+
+#type-sort-ctn option {
+    font-weight: 600;
+}
+
+.normal {
+    background-color: #A8A878;
+    border: 1px solid #6D6D4E;
+}
+
+.fire {
+    background-color: #F08030;
+    border: 1px solid #9C531F;
+}
+
+.water {
+    background-color: #6890F0;
+    border: 1px solid #445E9C;
+}
+
+.electric {
+    background-color: #F8D030;
+    border: 1px solid #A1871F;
+}
+
+.grass {
+    background-color: #78C850;
+    border: 1px solid #4E8234;
+}
+
+.ice {
+    background-color: #98D8D8;
+    border: 1px solid #638D8D;
+}
+
+.ground {
+    background-color: #E0C068;
+    border: 1px solid #927D44;
+}
+
+.flying {
+    background-color: #A890F0;
+    border: 1px solid #6D5E9C;
+}
+
+.ghost {
+    background-color: #705898;
+    border: 1px solid #493963;
+}
+
+.rock {
+    background-color: #B8A038;
+    border: 1px solid #786824;
+}
+
+.fighting {
+    background-color: #C03028;
+    border: 1px solid #7D1F1A;
+}
+
+.poison {
+    background-color: #A040A0;
+    border: 1px solid #682A68;
+}
+
+.psychic {
+    background-color: #F85888;
+    border: 1px solid #A13959;
+}
+
+.bug {
+    background-color: #A8B820;
+    border: 1px solid #6D7815;
+}
+
+.dark {
+    background-color: #705848;
+    border: 1px solid #49392F;
+}
+
+.steel {
+    background-color: #B8B8D0;
+    border: 1px solid #787887;
+}
+
+.dragon {
+    background-color: #7038F8;
+    border: 1px solid #4924A1;
+}
+
+#name-search-ctn input {
+    font-size: 16px;
+    height: 25px;
+    padding: 10px;
+}
+
+#pkm-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* overflow-y: scroll; */
+    width: 1010px;
+    min-height: 1000px;
+    height: max-content;
+}
+
+.pkm-ctn {
+    position: relative;
+    display: flex;
+    width: 99%;
+    height: 300px;
+    justify-content: center;
+}
+
+.pkm-ctn img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 10px;
+}
+
+.pkm-ctn h3 {
+    position: absolute;
+    top: 45%
+}
+
+.pkm-ctn #favorite-mark {
+    display: block;
+    position: absolute;
+    top: 53%;
+    left: 80%;
+    color: rgb(235, 164, 176);
+    font-size: 20px;
+}
+
+.pkm-typing {
+    position: absolute;
+    top: 65%;
+    padding-left: 0%;
+    margin-bottom: 20px;
+}
+
+.pkm-typing button {
+    width: 80px;
+    height: 25px;
+    border: 1px hidden;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    background-color: cornflowerblue;
+}
+
+.pkm-add {
+    position: absolute;
+    top: 80%;
+}
+
+.pkm-add i {
+    margin-right: 10px;
+}
+
+.pkm-add button {
+    width: 90px;
+    height: 25px;
+    border: 1px hidden;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+.pkm-add .pt-btn {
+    background-color: yellow;
+    transition-duration: 0.3s;
+}
+
+.pkm-add .pt-btn:hover {
+    border: 1px outset black;
+    background-color: gold;
+}
+
+.pkm-add .fav-btn {
+    background-color: pink;
+    transition-duration: 0.3s;
+}
+
+.pkm-add .fav-btn:hover {
+    border: 1px outset black;
+    background-color: plum;
+}
+
+.pkm-add .rmv-btn {
+    background-color: indianred;
+    transition-duration: 0.3s;
+}
+
+.pkm-add .rmv-btn i {
+    font-weight: bolder;
+}
+
+.pkm-add .rmv-btn:hover {
+    border: 1px outset black;
+    background-color: red;
+}
+
+.pkm-add .unfav-btn {
+    border: 1px outset black;
+    background-color: plum;
+}
+
+#party-container {
+    width: 500px;
+    height: max-content;
+    min-height: 1000px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin-left: 50px;
+    box-shadow: 10px 11px 47px 2px rgba(0, 0, 0, 0.4);
+}
+
+#party-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    height: max-content;
+}
+
+.party-pkm {
+    position: relative;
+    display: flex;
+    width: 99%;
+    height: 220px;
+    justify-content: center;
+}
+
+.party-pkm img {
+    width: 130px;
+    height: 130px;
+    margin-bottom: 10px;
+}
+
+.party-pkm h3 {
+    position: absolute;
+    top: 45%
+}
+
+#party-btn-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#party-btn-container button {
+    margin-bottom: 10px;
+    height: 30px;
+    width: fit-content;
+    min-width: 40px;
+    color: black;
+    font-size: 16px;
+    font-weight: 600;
+    border: 1px hidden;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#party-btn-container i {
+    margin-right: 10px;
+}
+
+#sav-btn {
+    background-color: lime;
+    transition-duration: 0.3s;
+}
+
+#sav-btn:hover {
+    background-color: limegreen;
+    border: 1px outset black
+}
+
+#clear-btn {
+    background-color: indianred;
+    transition-duration: 0.3s;
+}
+
+#clear-btn:hover {
+    background-color: red;
+    border: 1px outset black
+}
+
+#load-btn {
+    background-color: skyblue;
+    transition-duration: 0.3s;
+}
+
+#load-btn:hover {
+    background-color: rgb(117, 181, 206);
+    border: 1px outset black
+}

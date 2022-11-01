@@ -1,11 +1,5 @@
 <template>
     <div class="page-ctn">
-        <div id="page-btn-container">
-            <button id="profile-btn" onclick="window.location.href='../profile/profile.html'">
-                Go to Your Profile
-                <i class="fas fa-arrow-right"></i>
-            </button>
-        </div>
         <div id="selection-party-container">
             <div id="selection-container">
                 <div id="title">

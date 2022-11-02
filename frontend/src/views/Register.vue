@@ -3,7 +3,7 @@
         <div id="form-container">
             <div id="title">
                 <img src="../assets/pokeball-transparent-png-2.png" alt="">
-                <h2>Welcome to PokeTeamBuilder!</h2>
+                <h2>Welcome to PokePartyBuilder!</h2>
                 <img src="../assets/pokeball-transparent-png-2.png" alt="">
             </div>
             <form action="">

@@ -34,6 +34,8 @@
 </template>
 <style scoped>
 .nav-bar {
+        position: sticky;
+        top: 0;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -45,6 +47,7 @@
         flex: 1;
         display: flex;
         justify-content: flex-start;
+        margin-left: 10px;
     }
     .left h1 {
         color: white;

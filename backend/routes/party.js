@@ -1,18 +1,28 @@
 const router = require('express').Router();
+const knex = require("../database/knex");
 
 router.get("/", async (req, res) => {
-
-    return res.status(200).json({ message: 'Get your party' })
+    try {
+        const pokemons = await knex('pokemon').select('*');
+        console.log(pokemons);
+        return res.status(200).json({ pokemons });
+    } catch (error) {
+        res.status(500).json(error)
+    } 
 })
 
-router.post("/", async (req, res) => {
+router.put("/:pid", async (req, res) => {
+    try {
+        const status = await knex('pokemon')
+            .where('pid', req.params.pid)
+            .select('favorite')
+        
 
-    return res.status(200).json({ message: 'Add a Pokemon to your party' })
-})
-
-router.delete("/", async (req, res) => {
-
-    return res.status(200).json({ message: 'Remove a Pokemon to your party' })
+        console.log(status)
+        return res.status(200).json({ status })
+    } catch (error) {
+        res.status(500).json(error)
+    } 
 })
 
 module.exports = router;

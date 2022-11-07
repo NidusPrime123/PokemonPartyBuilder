@@ -16,7 +16,7 @@ app.use('/api/party', partyRoute);
 app.use('/api/favParty', favPartyRoute);
 
 app.get('/', (req, res) => {
-    res.status(200).send('Hello world!');
+    res.status(200).json({message: 'Hello world!'});
 })
 
 app.listen(process.env.PORT, () => {

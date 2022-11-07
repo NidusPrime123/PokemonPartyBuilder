@@ -236,24 +236,26 @@ hr {
 .pkm-typing button {
     width: 80px;
     height: 25px;
-    border: 1px hidden;
+    border: hidden;
     border-radius: 10px;
     font-size: 14px;
     font-weight: 600;
     color: white;
-    background-color: cornflowerblue;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 .pkm-add {
+    display: flex;
     position: absolute;
     top: 80%;
 }
 
-.pkm-add i {
-    margin-right: 10px;
-}
-
 .pkm-add button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     width: 90px;
     height: 25px;
     border: 1px hidden;
@@ -263,10 +265,15 @@ hr {
     cursor: pointer;
 }
 
+.pkm-add svg {
+    margin-right: 10px;
+}
 
 .pkm-add .pt-btn {
     background-color: yellow;
     transition-duration: 0.3s;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 .pkm-add .pt-btn:hover {
@@ -277,11 +284,14 @@ hr {
 .pkm-add .fav-btn {
     background-color: pink;
     transition-duration: 0.3s;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 .pkm-add .fav-btn:hover {
     border: 1px outset black;
     background-color: plum;
+    
 }
 
 .pkm-add .rmv-btn {

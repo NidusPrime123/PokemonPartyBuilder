@@ -6,7 +6,7 @@ router.get("/", async (req, res) => {
     try {
         const pokemons = await knex('pokemon').select('*');
 
-        return res.status(200).json({ pokemons });
+        return res.status(200).json( pokemons );
     } catch (error) {
         res.status(500).json(error)
     } 
@@ -19,7 +19,7 @@ router.get("/:pid", async (req, res) => {
             .where('pid', req.params.pid)
             .select('*');
 
-        return res.status(200).json({ pokemons });
+        return res.status(200).json( pokemons );
     } catch (error) {
         res.status(500).json(error)
     } 
@@ -34,14 +34,14 @@ router.put("/:pid", async (req, res) => {
             .update('favorite', 1);
 
         if (fav) {
-            return res.status(200).json({ fav })
+            return res.status(200).json( fav )
         } else {
             const unFav = await knex('pokemon')
                 .where('pid', req.params.pid)
                 .andWhere('favorite', '>', 0)
                 .update('favorite', 0)
 
-            return res.status(200).json({ unFav })
+            return res.status(200).json( unFav )
         }
         
     } catch (error) {

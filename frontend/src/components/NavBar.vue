@@ -34,7 +34,7 @@
 </template>
 <style scoped>
 .nav-bar {
-        position: sticky;
+        position: relative;
         top: 0;
         display: flex;
         align-items: center;

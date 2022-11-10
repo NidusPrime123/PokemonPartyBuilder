@@ -1,3 +1,66 @@
+<script>
+    import PokemonDisplay from '@/components/PokemonDisplay.vue'
+    import PartyDisplay from '@/components/PartyDisplay.vue'
+    import { apiRequest } from '@/api/request'
+
+    export default {
+        components: {
+            PokemonDisplay,
+            PartyDisplay,
+        },
+        data() {
+            return {
+                pokemons: [],
+                filteredPokemons: [],
+                party: [],
+                favParty: [],
+                searchText: '',
+            };
+        },
+        computed : {
+            // pokemonsAsString() {
+            //     return this.pokemons.map((pokemon) => {
+            //         const { pid, name, img, type1, type2, favorite } = pokemon;
+            //         return { pid, name, img, type1, type2, favorite }.join('');
+            //     });
+            // },
+            // filteredPokemons() {
+            //     if (!this.searchText) return this.pokemons;
+            //     return this.pokemons.filter((pokemon, index) =>
+            //         this.pokemonsAsString[index].name.includes(this.searchText)
+            //     ); 
+            // },
+        },  
+        methods: {
+            async retrievePokemonList() {
+                try {
+                    const PokemonList = await apiRequest.get('/pokemon');
+                    this.pokemons = PokemonList.data;
+                    this.filteredPokemons = PokemonList.data
+                    console.log(this.pokemons);
+                    return;
+                } catch (error) {
+                    console.log(error)
+                }
+            },
+            async retrieveParty() {
+                try {
+                    const PartyList = await apiRequest.get('/party');
+                    this.party = PartyList.data;
+                    console.log(this.party);
+                    return;
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+        },
+        mounted() {
+            this.retrievePokemonList()
+            this.retrieveParty();
+        }
+    }
+
+</script>
 <template>
     <div class="page-ctn">
         <div id="selection-party-container">
@@ -62,34 +125,13 @@
                     </div>
                 </div>
                 <hr />
-                <div id="pkm-list">
-                    <div class="pkm-ctn">
-                        <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/006.png" alt="Charizard" />
-                        <h3>Charizard</h3>
-                        <i class="fas fa-heart" id='favorite-mark'></i>
-                        <div class="pkm-typing">
-                            <button class='fire'>Fire</button>
-                            <button class='flying'>Flying</button>
-                        </div>
-                        <div class="pkm-add">
-                            <button class="pt-btn" id="${pokemon.dexEntry}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle"
-                                    viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                                </svg>
-                                <i class="fas fa-plus"></i>Party
-                            </button>
-                            <button class="fav-btn" id="${pokemon.dexEntry}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart"
-                                    viewBox="0 0 16 16">
-                                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                </svg>
-                                Favorite
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <PokemonDisplay
+                    v-if="pokemons.length > 0"
+                    :pokemons="filteredPokemons"
+                />
+                <h2 v-else>
+                    Failed to retrieve Pokemon list
+                </h2>
             </div>
             <div id="party-container">
                 <div id="title">
@@ -97,17 +139,37 @@
                     <h2>Your Party</h2>
                     <img src="../assets/pokeball-transparent-png-2.png" alt="">
                 </div>
-                <div id="party-list">
-                </div>
+                <PartyDisplay 
+                    v-if="party.length > 0"
+                    :party="party"
+                />
+                <h2 v-else>
+                    Failed to retrieve party 
+                </h2>
                 <div id="party-btn-container">
                     <button id="clear-btn">
-                        <i class="fas fa-trash-alt"></i>Clear party
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
+                        </svg>
+                        Clear party
                     </button>
                     <button id="sav-btn">
-                        <i class="fas fa-save"></i>Save as main party
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 448 512">
+                            <path
+                                d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V173.3c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32H64zm0 96c0-17.7 14.3-32 32-32H288c17.7 0 32 14.3 32 32v64c0 17.7-14.3 
+                                32-32 32H96c-17.7 0-32-14.3-32-32V128zM224 416c-35.3 0-64-28.7-64-64s28.7-64 64-64s64 28.7 64 64s-28.7 64-64 64z" />
+                        </svg>
+                        Save as main party
                     </button>
                     <button id="load-btn">
-                        <i class="fas fa-upload"></i>Load main party
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
+                            <path
+                                d="M288 109.3V352c0 17.7-14.3 32-32 32s-32-14.3-32-32V109.3l-73.4 73.4c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l128-128c12.5-12.5 32.8-12.5 45.3 0l128 128c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L288 109.3zM64 
+                                352H192c0 35.3 28.7 64 64 64s64-28.7 64-64H448c35.3 0 64 28.7 64 64v32c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V416c0-35.3 28.7-64 64-64zM432 456c13.3 0 24-10.7 24-24s-10.7-24-24-24s-24 10.7-24 24s10.7 24 24 24z" />
+                        </svg>
+                        Load main party
                     </button>
                 </div>
             </div>

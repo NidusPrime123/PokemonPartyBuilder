@@ -13,23 +13,18 @@
                 pokemons: [],
                 filteredPokemons: [],
                 party: [],
+                partyData: [],
                 favParty: [],
                 searchText: '',
             };
         },
         computed : {
-            // pokemonsAsString() {
-            //     return this.pokemons.map((pokemon) => {
-            //         const { pid, name, img, type1, type2, favorite } = pokemon;
-            //         return { pid, name, img, type1, type2, favorite }.join('');
-            //     });
-            // },
-            // filteredPokemons() {
-            //     if (!this.searchText) return this.pokemons;
-            //     return this.pokemons.filter((pokemon, index) =>
-            //         this.pokemonsAsString[index].name.includes(this.searchText)
-            //     ); 
-            // },
+            filteredPokemons() {
+                // if (!this.searchText) return this.pokemons;
+                // return this.pokemons.filter((pokemon, index) =>
+                //     this.pokemonsAsString[index].name.includes(this.searchText)
+                // ); 
+            },
         },  
         methods: {
             async retrievePokemonList() {
@@ -37,7 +32,6 @@
                     const PokemonList = await apiRequest.get('/pokemon');
                     this.pokemons = PokemonList.data;
                     this.filteredPokemons = PokemonList.data
-                    console.log(this.pokemons);
                     return;
                 } catch (error) {
                     console.log(error)
@@ -47,11 +41,56 @@
                 try {
                     const PartyList = await apiRequest.get('/party');
                     this.party = PartyList.data;
-                    console.log(this.party);
+                    PartyList.data.forEach(pokemon => {
+                        if (pokemon.pid) {
+                            const data = {
+                                id: pokemon.id,
+                                pid: pokemon.pid
+                            }
+                            this.partyData.push(data);
+                        }
+                    })
                     return;
                 } catch (error) {
                     console.log(error)
                 }
+            },
+            async toggleFavorite(pid) {
+                await apiRequest.put(`/pokemon/${pid}`)
+                this.retrievePokemonList();
+            },
+            async removeFromParty(pid) {
+                const newPokemonParty = this.partyData.filter(pokemon => pokemon.pid !== pid);
+                const newPokemonPartyData = [];
+                for (let i=1; i <= newPokemonParty.length; i++) {
+                    if (newPokemonParty[i-1].pid) {
+                        const data = {
+                            id: i,
+                            pid: newPokemonParty[i-1].pid
+                        }
+                        newPokemonPartyData.push(data);
+                    }
+                }
+                await apiRequest.put(`/party`, newPokemonPartyData);
+
+                this.retrieveParty();
+            },
+            async addToParty(pid) {
+                if (this.partyData.length >= 6) {
+                    window.alert("The party is full! You must remove pokemon(s) from your party before you can add more")
+                    return;
+                }
+
+                const data = {
+                    id: this.partyData.length + 1,
+                    pid: pid
+                }
+                this.partyData.push(data);
+
+                const res = await apiRequest.put(`/party`, this.partyData);
+                console.log(res)
+
+                this.retrieveParty();
             }
         },
         mounted() {
@@ -73,7 +112,11 @@
                 <div id="sort-container">
                     <div id="type-sort-ctn">
                         <label>Sort by type:</label>
-                        <select name="type-1" id="type-1">
+                        <select 
+                            name="type-1" 
+                            id="type-1"
+                            
+                        >
                             <option value="" disabled selected>-- Select a primary typing --</option>
                             <option value=""> All</option>
                             <option class="normal" value="Normal">Normal</option>
@@ -128,6 +171,8 @@
                 <PokemonDisplay
                     v-if="pokemons.length > 0"
                     :pokemons="filteredPokemons"
+                    :toggleFavorite="toggleFavorite"
+                    :addToParty="addToParty"
                 />
                 <h2 v-else>
                     Failed to retrieve Pokemon list
@@ -142,6 +187,7 @@
                 <PartyDisplay 
                     v-if="party.length > 0"
                     :party="party"
+                    :removeFromParty="removeFromParty"
                 />
                 <h2 v-else>
                     Failed to retrieve party 

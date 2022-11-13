@@ -1,7 +1,8 @@
 <script>
     export default {
         props: {
-            party: { type: Array, default: () => []}
+            party: { type: Array, default: () => []},
+            removeFromParty: { type: Function },
         },
     }
 </script>
@@ -19,7 +20,9 @@
                 <button :class=pokemon.type2.toLowerCase()>{{ pokemon.type2 }}</button>
             </div>
             <div class="pkm-add">
-                <button class="rmv-btn">
+                <button
+                    @click="removeFromParty(pokemon.pid)" 
+                    class="rmv-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
                         <path
                             d="M367.2 412.5L99.5 144.8C77.1 176.1 64 214.5 64 256c0 106 86 192 192 192c41.5 0 79.9-13.1 111.2-35.5zm45.3-45.3C434.9 335.9 448 297.5 448 256c0-106-86-192-192-192c-41.5 0-79.9 13.1-111.2 

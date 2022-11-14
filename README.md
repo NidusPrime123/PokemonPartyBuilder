@@ -10,6 +10,6 @@ Your contribution is much appreciated however small. Just follow the steps below
   4. Code! (Make you to use git pull check for new code to avoid conflicts!)
   5. Add then commit with a message. Any message is fine as long as I understand what you are changing (git commit -m)
   6. Push to your own branch (git push origin yourbranch)
-  7. Create a pull request on this repository and wait for merge
+  7. Create a pull request on this repository and wait for merge (images of your result is highly encouraged)
 
 I wish you the best of luck!

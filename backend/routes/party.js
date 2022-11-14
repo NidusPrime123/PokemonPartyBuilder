@@ -39,4 +39,12 @@ router.put("/", async (req, res) => {
     } 
 })
 
+router.delete("/", async (req, res) => {
+    try {
+        await knex('party').del();
+    } catch (error) {
+        res.status(500).json(error)
+    } 
+})
+
 module.exports = router;

@@ -185,6 +185,7 @@ hr {
 
 .none {
     background-color: black;
+    color: white;
 }
 
 #name-search-ctn input {
@@ -326,6 +327,8 @@ hr {
     margin-left: 50px;
     margin-top: 30px;
     box-shadow: 10px 11px 47px 2px rgba(0, 0, 0, 0.4);
+    padding-bottom: 20px;
+    text-align: center;
 }
 
 #party-list {
@@ -379,12 +382,17 @@ hr {
     margin-right: 10px;
 }
 
-#sav-btn {
+#sav-btn, #sav-btn-slot {
     background-color: lime;
     transition-duration: 0.3s;
 }
 
-#sav-btn:hover {
+#sav-btn-slot, #load-btn-slot {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#sav-btn:hover, #sav-btn-slot:hover {
     background-color: limegreen;
     border: 1px outset black
 }
@@ -399,12 +407,12 @@ hr {
     border: 1px outset black
 }
 
-#load-btn {
+#load-btn, #load-btn-slot {
     background-color: skyblue;
     transition-duration: 0.3s;
 }
 
-#load-btn:hover {
+#load-btn:hover, #load-btn-slot:hover {
     background-color: rgb(117, 181, 206);
     border: 1px outset black
 }

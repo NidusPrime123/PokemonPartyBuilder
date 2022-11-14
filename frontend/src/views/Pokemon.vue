@@ -13,18 +13,19 @@
                 pokemons: [],
                 filteredPokemons: [],
                 party: [],
-                partyData: [],
                 favParty: [],
                 searchText: '',
+                toggleSav: false,
+                toggleLoad: false,
             };
         },
         computed : {
-            filteredPokemons() {
-                // if (!this.searchText) return this.pokemons;
-                // return this.pokemons.filter((pokemon, index) =>
-                //     this.pokemonsAsString[index].name.includes(this.searchText)
-                // ); 
-            },
+            // filteredPokemons() {
+            //     if (!this.searchText) return this.pokemons;
+            //     return this.pokemons.filter((pokemon, index) =>
+            //         this.pokemonsAsString[index].name.includes(this.searchText)
+            //     ); 
+            // },
         },  
         methods: {
             async retrievePokemonList() {
@@ -32,6 +33,7 @@
                     const PokemonList = await apiRequest.get('/pokemon');
                     this.pokemons = PokemonList.data;
                     this.filteredPokemons = PokemonList.data
+                    
                     return;
                 } catch (error) {
                     console.log(error)
@@ -40,17 +42,21 @@
             async retrieveParty() {
                 try {
                     const PartyList = await apiRequest.get('/party');
-                    this.party = PartyList.data;
-                    PartyList.data.forEach(pokemon => {
-                        if (pokemon.pid) {
-                            const data = {
-                                id: pokemon.id,
-                                pid: pokemon.pid
-                            }
-                            this.partyData.push(data);
-                        }
-                    })
-                    return;
+                    if (PartyList.data) {
+                        this.party = PartyList.data;
+                        // PartyList.data.forEach(pokemon => {
+                        //     if (pokemon.pid) {
+                        //         const data = {
+                        //             id: pokemon.id,
+                        //             pid: pokemon.pid
+                        //         }
+                        //         this.partyData.push(data);
+                        //     }
+                        // })
+                    } else {
+                        this.party = [];
+                    }
+                    
                 } catch (error) {
                     console.log(error)
                 }
@@ -58,6 +64,22 @@
             async toggleFavorite(pid) {
                 await apiRequest.put(`/pokemon/${pid}`)
                 this.retrievePokemonList();
+            },
+            async onToggleSave() {
+                if (this.toggleSav) {
+                    this.toggleSav = false;
+                    return;
+                }
+                this.toggleSav = true;
+                return;
+            },
+            async onToggleLoad() {
+                if (this.toggleLoad) {
+                    this.toggleLoad = false;
+                    return;
+                }
+                this.toggleLoad = true;
+                return;
             },
             async removeFromParty(pid) {
                 const newPokemonParty = this.partyData.filter(pokemon => pokemon.pid !== pid);
@@ -76,22 +98,63 @@
                 this.retrieveParty();
             },
             async addToParty(pid) {
-                if (this.partyData.length >= 6) {
+                if (this.party.length >= 6) {
                     window.alert("The party is full! You must remove pokemon(s) from your party before you can add more")
                     return;
                 }
+                const partyData = []
+                this.party.forEach(pokemon => {
+                    if (pokemon.pid) {
+                        const data = {
+                            id: pokemon.id,
+                            pid: pokemon.pid
+                        }
+                        partyData.push(data);
+                    }
+                })
 
-                const data = {
-                    id: this.partyData.length + 1,
-                    pid: pid
-                }
-                this.partyData.push(data);
+                partyData.push({
+                    id: this.party.length + 1,
+                    pid: pid,
+                })
 
-                const res = await apiRequest.put(`/party`, this.partyData);
+                const res = await apiRequest.put(`/party`, partyData);
                 console.log(res)
 
                 this.retrieveParty();
-            }
+            },
+            async clearParty() {
+                if (window.confirm("Are you sure you want to delete your current party?") == true) {
+                    await apiRequest.delete(`/party`);
+                    this.retrieveParty();
+                    return;
+                } else {
+                    console.log("Cancelled!");
+                    return;
+                }
+                
+            },
+            async saveParty(slotid) {
+                if (this.partyData.length > 6) {
+                    window.alert("Invalid party!");
+                    return;
+                }
+                const savPokemonPartyData = [];
+                this.partyData.forEach(pokemon => {
+                    if (pokemon.pid) {
+                        const data = {
+                            pid: pokemon.pid
+                        }
+                        savPokemonPartyData.push(data);
+                    }
+                })
+                const res = await apiRequest.put(`/favparty/${slotid}`, savPokemonPartyData);
+                if (res.data) {
+                    window.alert("Your party have been successfully saved to slot #2")
+                }
+                // console.log(savPokemonPartyData);
+                // console.log(slotid)
+            },
         },
         mounted() {
             this.retrievePokemonList()
@@ -112,11 +175,7 @@
                 <div id="sort-container">
                     <div id="type-sort-ctn">
                         <label>Sort by type:</label>
-                        <select 
-                            name="type-1" 
-                            id="type-1"
-                            
-                        >
+                        <select  name="type-1" id="type-1">
                             <option value="" disabled selected>-- Select a primary typing --</option>
                             <option value=""> All</option>
                             <option class="normal" value="Normal">Normal</option>
@@ -190,10 +249,13 @@
                     :removeFromParty="removeFromParty"
                 />
                 <h2 v-else>
-                    Failed to retrieve party 
+                    Party is currently empty
                 </h2>
                 <div id="party-btn-container">
-                    <button id="clear-btn">
+                    <button 
+                        id="clear-btn"
+                        @click="clearParty()"
+                    >
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill"
                             viewBox="0 0 16 16">
                             <path
@@ -201,7 +263,10 @@
                         </svg>
                         Clear party
                     </button>
-                    <button id="sav-btn">
+                    <button 
+                        id="sav-btn"
+                        @click="onToggleSave()"
+                    >
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 448 512">
                             <path
                                 d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V173.3c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32H64zm0 96c0-17.7 14.3-32 32-32H288c17.7 0 32 14.3 32 32v64c0 17.7-14.3 
@@ -209,7 +274,14 @@
                         </svg>
                         Save as main party
                     </button>
-                    <button id="load-btn">
+                    <div v-if="toggleSav">
+                        <button id="sav-btn-slot" @click="saveParty(1)">Slot 1</button>
+                        <button id="sav-btn-slot" @click="saveParty(2)">Slot 2</button>
+                    </div>
+                    <button 
+                        id="load-btn"
+                        @click="onToggleLoad()"
+                    >
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
                             <path
                                 d="M288 109.3V352c0 17.7-14.3 32-32 32s-32-14.3-32-32V109.3l-73.4 73.4c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l128-128c12.5-12.5 32.8-12.5 45.3 0l128 128c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L288 109.3zM64 
@@ -217,6 +289,10 @@
                         </svg>
                         Load main party
                     </button>
+                    <div v-if="toggleLoad">
+                        <button id="load-btn-slot">Slot 1</button>
+                        <button id="load-btn-slot">Slot 2</button>
+                    </div>
                 </div>
             </div>
         </div>

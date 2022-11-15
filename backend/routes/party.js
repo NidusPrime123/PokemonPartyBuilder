@@ -42,6 +42,7 @@ router.put("/", async (req, res) => {
 router.delete("/", async (req, res) => {
     try {
         await knex('party').del();
+        return res.status(200).json("Party deleted")
     } catch (error) {
         res.status(500).json(error)
     } 

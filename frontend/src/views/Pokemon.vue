@@ -44,15 +44,6 @@
                     const PartyList = await apiRequest.get('/party');
                     if (PartyList.data) {
                         this.party = PartyList.data;
-                        // PartyList.data.forEach(pokemon => {
-                        //     if (pokemon.pid) {
-                        //         const data = {
-                        //             id: pokemon.id,
-                        //             pid: pokemon.pid
-                        //         }
-                        //         this.partyData.push(data);
-                        //     }
-                        // })
                     } else {
                         this.party = [];
                     }
@@ -81,19 +72,21 @@
                 this.toggleLoad = true;
                 return;
             },
-            async removeFromParty(pid) {
-                const newPokemonParty = this.partyData.filter(pokemon => pokemon.pid !== pid);
-                const newPokemonPartyData = [];
-                for (let i=1; i <= newPokemonParty.length; i++) {
-                    if (newPokemonParty[i-1].pid) {
+            async removeFromParty(id) {
+                const partyData = [];
+                let i = 1;
+                this.party.forEach(pokemon => {
+                    if (pokemon.id !== id) {
                         const data = {
                             id: i,
-                            pid: newPokemonParty[i-1].pid
+                            pid: pokemon.pid
                         }
-                        newPokemonPartyData.push(data);
+                        partyData.push(data);
+                        i++;
                     }
-                }
-                await apiRequest.put(`/party`, newPokemonPartyData);
+                })
+                console.log(partyData)
+                await apiRequest.put(`/party`, partyData);
 
                 this.retrieveParty();
             },
@@ -126,7 +119,7 @@
             async clearParty() {
                 if (window.confirm("Are you sure you want to delete your current party?") == true) {
                     await apiRequest.delete(`/party`);
-                    this.retrieveParty();
+                    location.reload();
                     return;
                 } else {
                     console.log("Cancelled!");

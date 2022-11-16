@@ -7,8 +7,6 @@ router.get("/", async (req, res) => {
         const party = await knex('party')
             .join('pokemon', 'pokemon.pid', 'party.pid')
             .orderBy("party.id", "asc");
-            // .select('pokemon.pid', 'pokemon.name', 'pokemon.img')
-            // .where('pokemon.pid', '=', 'party.pid');
 
         return res.status(200).json( party );
     } catch (error) {

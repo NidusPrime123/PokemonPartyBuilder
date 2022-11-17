@@ -15,196 +15,17 @@
                 party: [],
                 favParty: [],
                 searchText: '',
-                type1Filter: '',
-                type2Filter: '',
                 toggleSav: false,
                 toggleLoad: false,
             };
         },
-        watch: {
-            type1Filter() {
-
-                if (this.type1Filter && this.type2Filter && this.searchText) {
-                    const newPokemons = this.pokemons.filter(pokemon => {
-                        return pokemon.type1 === this.type1Filter &&
-                            pokemon.type2 === this.type2Filter &&
-                            pokemon.name.toLowerCase().includes(this.searchText.toLowerCase())
-                    })
-                    this.filteredPokemons = newPokemons
-                    return;
-
-                } else if (this.type1Filter && this.type2Filter) {
-                    const newPokemons = this.pokemons.filter(pokemon => {
-                        return pokemon.type1 === this.type1Filter &&
-                            pokemon.type2 === this.type2Filter
-                    })
-                    this.filteredPokemons = newPokemons
-                    return;
-
-                } else if (this.type2Filter && this.searchText) {
-                    const newPokemons = this.pokemons.filter(pokemon => {
-                        return pokemon.type2 === this.type2Filter &&
-                            pokemon.name.toLowerCase().includes(this.searchText.toLowerCase())
-                    })
-                    this.filteredPokemons = newPokemons
-                    return;
-
-                } else if (this.type1Filter && this.searchText) {
-                    const newPokemons = this.pokemons.filter(pokemon => {
-                        return pokemon.type1 === this.type1Filter &&
-                            pokemon.name.toLowerCase().includes(this.searchText.toLowerCase())
-                    })
-                    this.filteredPokemons = newPokemons
-                    return;
-
-                } else if (this.type1Filter) {
-                    const newPokemons = this.pokemons.filter(pokemon =>
-                        pokemon.type1 === this.type1Filter
-                    )
-                    this.filteredPokemons = newPokemons
-                    return;
-
-                } else if (this.type2Filter) {
-                    const newPokemons = this.pokemons.filter(pokemon =>
-                        pokemon.type2 === this.type2Filter
-                    )
-                    this.filteredPokemons = newPokemons
-                    return;
-
-                } else if (this.searchText) {
-                    const newPokemons = this.pokemons.filter(pokemon =>
-                        pokemon.name.toLowerCase().includes(this.searchText.toLowerCase())
-                    )
-                    this.filteredPokemons = newPokemons
-                    return;
-
-                } else {
-                    this.filteredPokemons = this.pokemons
-                    return;
-                }
-            },
-            type2Filter() {
-
-                if (this.type1Filter && this.type2Filter && this.searchText) {
-                    const newPokemons = this.pokemons.filter(pokemon => {
-                        return pokemon.type1 === this.type1Filter &&
-                            pokemon.type2 === this.type2Filter &&
-                            pokemon.name.toLowerCase().includes(this.searchText.toLowerCase())
-                    })
-                    this.filteredPokemons = newPokemons
-                    return;
-
-                } else if (this.type1Filter && this.type2Filter) {
-                    const newPokemons = this.pokemons.filter(pokemon => {
-                        return pokemon.type1 === this.type1Filter &&
-                            pokemon.type2 === this.type2Filter
-                    })
-                    this.filteredPokemons = newPokemons
-                    return;
-
-                } else if (this.type2Filter && this.searchText) {
-                    const newPokemons = this.pokemons.filter(pokemon => {
-                        return pokemon.type2 === this.type2Filter &&
-                            pokemon.name.toLowerCase().includes(this.searchText.toLowerCase())
-                    })
-                    this.filteredPokemons = newPokemons
-                    return;
-
-                } else if (this.type1Filter && this.searchText) {
-                    const newPokemons = this.pokemons.filter(pokemon => {
-                        return pokemon.type1 === this.type1Filter &&
-                            pokemon.name.toLowerCase().includes(this.searchText.toLowerCase())
-                    })
-                    this.filteredPokemons = newPokemons
-                    return;
-
-                } else if (this.type1Filter) {
-                    const newPokemons = this.pokemons.filter(pokemon =>
-                        pokemon.type1 === this.type1Filter
-                    )
-                    this.filteredPokemons = newPokemons
-                    return;
-
-                } else if (this.type2Filter) {
-                    const newPokemons = this.pokemons.filter(pokemon =>
-                        pokemon.type2 === this.type2Filter
-                    )
-                    this.filteredPokemons = newPokemons
-                    return;
-
-                } else if (this.searchText) {
-                    const newPokemons = this.pokemons.filter(pokemon =>
-                        pokemon.name.toLowerCase().includes(this.searchText.toLowerCase())
-                    )
-                    this.filteredPokemons = newPokemons
-                    return;
-
-                } else {
-                    this.filteredPokemons = this.pokemons
-                    return;
-                }
-            },
-            searchText() {
-
-                if (this.type1Filter && this.type2Filter && this.searchText) {
-                    const newPokemons = this.pokemons.filter(pokemon => {
-                        return pokemon.type1 === this.type1Filter &&
-                            pokemon.type2 === this.type2Filter &&
-                            pokemon.name.toLowerCase().includes(this.searchText.toLowerCase())
-                    })
-                    this.filteredPokemons = newPokemons
-                    return;
-
-                } else if (this.type1Filter && this.type2Filter) {
-                    const newPokemons = this.pokemons.filter(pokemon => {
-                        return pokemon.type1 === this.type1Filter &&
-                            pokemon.type2 === this.type2Filter
-                    })
-                    this.filteredPokemons = newPokemons
-                    return;
-
-                } else if (this.type2Filter && this.searchText) {
-                    const newPokemons = this.pokemons.filter(pokemon => {
-                        return pokemon.type2 === this.type2Filter &&
-                            pokemon.name.toLowerCase().includes(this.searchText.toLowerCase())
-                    })
-                    this.filteredPokemons = newPokemons
-                    return;
-
-                } else if (this.type1Filter && this.searchText) {
-                    const newPokemons = this.pokemons.filter(pokemon => {
-                        return pokemon.type1 === this.type1Filter &&
-                            pokemon.name.toLowerCase().includes(this.searchText.toLowerCase())
-                    })
-                    this.filteredPokemons = newPokemons
-                    return;
-
-                } else if (this.type1Filter) {
-                    const newPokemons = this.pokemons.filter(pokemon =>
-                        pokemon.type1 === this.type1Filter
-                    )
-                    this.filteredPokemons = newPokemons
-                    return;
-
-                } else if (this.type2Filter) {
-                    const newPokemons = this.pokemons.filter(pokemon =>
-                        pokemon.type2 === this.type2Filter
-                    )
-                    this.filteredPokemons = newPokemons
-                    return;
-
-                } else if (this.searchText) {
-                    const newPokemons = this.pokemons.filter(pokemon =>
-                        pokemon.name.toLowerCase().includes(this.searchText.toLowerCase())
-                    )
-                    this.filteredPokemons = newPokemons
-                    return;
-
-                } else {
-                    this.filteredPokemons = this.pokemons
-                    return;
-                }
-            }
+        computed : {
+            // filteredPokemons() {
+            //     if (!this.searchText) return this.pokemons;
+            //     return this.pokemons.filter((pokemon, index) =>
+            //         this.pokemonsAsString[index].name.includes(this.searchText)
+            //     ); 
+            // },
         },  
         methods: {
             async retrievePokemonList() {
@@ -220,9 +41,18 @@
             },
             async retrieveParty() {
                 try {
-                    const partyList = await apiRequest.get('/party');
-                    if (partyList.data) {
-                        this.party = partyList.data;
+                    const PartyList = await apiRequest.get('/party');
+                    if (PartyList.data) {
+                        this.party = PartyList.data;
+                        // PartyList.data.forEach(pokemon => {
+                        //     if (pokemon.pid) {
+                        //         const data = {
+                        //             id: pokemon.id,
+                        //             pid: pokemon.pid
+                        //         }
+                        //         this.partyData.push(data);
+                        //     }
+                        // })
                     } else {
                         this.party = [];
                     }
@@ -251,21 +81,19 @@
                 this.toggleLoad = true;
                 return;
             },
-            async removeFromParty(id) {
-                const partyData = [];
-                let i = 1;
-                this.party.forEach(pokemon => {
-                    if (pokemon.id !== id) {
+            async removeFromParty(pid) {
+                const newPokemonParty = this.partyData.filter(pokemon => pokemon.pid !== pid);
+                const newPokemonPartyData = [];
+                for (let i=1; i <= newPokemonParty.length; i++) {
+                    if (newPokemonParty[i-1].pid) {
                         const data = {
                             id: i,
-                            pid: pokemon.pid
+                            pid: newPokemonParty[i-1].pid
                         }
-                        partyData.push(data);
-                        i++;
+                        newPokemonPartyData.push(data);
                     }
-                })
-                console.log(partyData)
-                await apiRequest.put(`/party`, partyData);
+                }
+                await apiRequest.put(`/party`, newPokemonPartyData);
 
                 this.retrieveParty();
             },
@@ -290,14 +118,15 @@
                     pid: pid,
                 })
 
-                await apiRequest.put(`/party`, partyData);
+                const res = await apiRequest.put(`/party`, partyData);
+                console.log(res)
 
                 this.retrieveParty();
             },
             async clearParty() {
                 if (window.confirm("Are you sure you want to delete your current party?") == true) {
                     await apiRequest.delete(`/party`);
-                    location.reload();
+                    this.retrieveParty();
                     return;
                 } else {
                     console.log("Cancelled!");
@@ -306,42 +135,26 @@
                 
             },
             async saveParty(slotid) {
-                if (this.party.length > 6) {
+                if (this.partyData.length > 6) {
                     window.alert("Invalid party!");
                     return;
                 }
-                const partyData = [];
-                this.party.forEach(pokemon => {
+                const savPokemonPartyData = [];
+                this.partyData.forEach(pokemon => {
                     if (pokemon.pid) {
                         const data = {
                             pid: pokemon.pid
                         }
-                        partyData.push(data);
+                        savPokemonPartyData.push(data);
                     }
                 })
-
-                const res = await apiRequest.put(`/favparty/${slotid}`, partyData);
+                const res = await apiRequest.put(`/favparty/${slotid}`, savPokemonPartyData);
                 if (res.data) {
-                    window.alert(`Your party have been successfully saved to slot #${slotid}`)
+                    window.alert("Your party have been successfully saved to slot #2")
                 }
+                // console.log(savPokemonPartyData);
+                // console.log(slotid)
             },
-            async loadParty(slotid) {
-                const favPartyData = await apiRequest.get(`/favparty/${slotid}`)
-                const partyData = [];
-                let i = 1;
-                favPartyData.data.forEach(pokemon => {
-                    if (pokemon.pid) {
-                        const data = {
-                            id: i,
-                            pid: pokemon.pid,
-                        }
-                        partyData.push(data);
-                        i++;
-                    }
-                })
-                await apiRequest.put(`/party/`, partyData);
-                this.retrieveParty();
-            }
         },
         mounted() {
             this.retrievePokemonList()
@@ -355,20 +168,16 @@
         <div id="selection-party-container">
             <div id="selection-container">
                 <div id="title">
-                    <img src="../assets/pokeball-transparent-png-2.png" alt="">
+                    <img src="../assets/attribute2.png" alt="" class="attribute_list">
                     <h2>Pokemon Selection</h2>
-                    <img src="../assets/pokeball-transparent-png-2.png" alt="">
+                    <img src="../assets/attribute2.png" alt="" class="attribute_list">
                 </div>
                 <div id="sort-container">
                     <div id="type-sort-ctn">
                         <label>Sort by type:</label>
-                        <select 
-                            name="type-1"
-                            v-model="type1Filter"
-                            :class=type1Filter.toLowerCase()
-                        >
-                            <option class="all" value="" disabled selected>-- Select a primary typing --</option>
-                            <option class="all" value=""> All</option>
+                        <select  name="type-1" id="type-1">
+                            <option value="" disabled selected>-- Select a primary typing --</option>
+                            <option value=""> All</option>
                             <option class="normal" value="Normal">Normal</option>
                             <option class='fire' value="Fire">Fire</option>
                             <option class='water' value="Water">Water</option>
@@ -387,13 +196,9 @@
                             <option class='dragon' value="Dragon">Dragon</option>
                             <option class='steel' value="Steel">Steel</option>
                         </select>
-                        <select 
-                            name="type-2"
-                            v-model="type2Filter"
-                            :class=type2Filter.toLowerCase()
-                        >
-                            <option class="all" value="" disabled selected>-- Select a secondary typing --</option>
-                            <option class="all" value="">All</option>
+                        <select name="type-2" id="type-2">
+                            <option value="" disabled selected>-- Select a secondary typing --</option>
+                            <option value="">All</option>
                             <option class="normal" value="Normal">Normal</option>
                             <option class='fire' value="Fire">Fire</option>
                             <option class='water' value="Water">Water</option>
@@ -418,7 +223,7 @@
                     </div>
                     <div id="name-search-ctn">
                         <label for="name-search">Search by name:</label>
-                        <input v-model="searchText" type="search">
+                        <input id="name-search" type="search">
                     </div>
                 </div>
                 <hr />
@@ -434,9 +239,9 @@
             </div>
             <div id="party-container">
                 <div id="title">
-                    <img src="../assets/pokeball-transparent-png-2.png" alt="">
+                    <img src="../assets/house2_icon.png" alt="" class="invert">
                     <h2>Your Party</h2>
-                    <img src="../assets/pokeball-transparent-png-2.png" alt="">
+                    <img src="../assets/house2_icon.png" alt="">
                 </div>
                 <PartyDisplay 
                     v-if="party.length > 0"
@@ -485,8 +290,8 @@
                         Load main party
                     </button>
                     <div v-if="toggleLoad">
-                        <button id="load-btn-slot" @click="loadParty(1)">Slot 1</button>
-                        <button id="load-btn-slot" @click="loadParty(2)">Slot 2</button>
+                        <button id="load-btn-slot">Slot 1</button>
+                        <button id="load-btn-slot">Slot 2</button>
                     </div>
                 </div>
             </div>

@@ -27,7 +27,7 @@
     justify-content: center;
     width: 100%;
     height: max-content;
-    background-color: darkblue;
+    background-color: rgb(34, 248, 220);
     border: hidden;
     border-radius: 20px 20px 0px 0px;
     text-align: center;
@@ -35,7 +35,8 @@
 }
 
 #title h1 {
-    color: white;
+    font-family: sans-serif;
+    color: rgb(34, 32, 32);
 }
 
 #title img {
@@ -59,6 +60,14 @@
 
 #content p {
     font-size: 18px;
+    text-align: justify;
+    font-family: Courier New, monospace;
+}
+
+
+#content h2 {
+    font-size: 20px;
+    font-family: Comic Sans MS, Comic Sans, cursive;
 }
 
 #content button {
@@ -88,3 +97,6 @@
     background-color: green;
     border: 1px solid black;
 }
+
+
+

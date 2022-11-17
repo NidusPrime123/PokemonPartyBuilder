@@ -2,9 +2,9 @@
     <div id="page-ctn">
         <div id="form-container">
             <div id="title">
-                <img src="../assets/pokeball-transparent-png-2.png" alt="">
+                <img src="../assets/register2_icon.png" alt="" class="rotate_effect">
                 <h2>Welcome to PokePartyBuilder!</h2>
-                <img src="../assets/pokeball-transparent-png-2.png" alt="">
+                <!-- <img src="../assets/pokeball-transparent-png-2.png" alt=""> -->
             </div>
             <form action="">
                 <div class="field">

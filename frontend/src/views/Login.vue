@@ -2,9 +2,9 @@
     <div id="page-ctn">
         <div id="form-container">
             <div id="title">
-                <img src="../assets/pokeball-transparent-png-2.png" alt="">
+                <img src="../assets/gif_1.gif" alt="" class="invert">
                 <h2>Welcome!</h2>
-                <img src="../assets/pokeball-transparent-png-2.png" alt="">
+                <img src="../assets/gif_1.gif" alt="">
             </div>
             <form action="">
                 <div class="field">

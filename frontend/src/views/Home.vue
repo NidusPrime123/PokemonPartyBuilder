@@ -13,7 +13,7 @@
                     Welcome to <b>Pokemon Party Builder</b>! As the name suggest, this website will assist you with building your Pokemon Dream Team.
                     One of the most fun aspect of a Pokemon game is building your own party of Pokemons, so we can bond, adventure and battle with them.
                 </p>
-                <h2>What are you waiting for? Build your own Pokemon party right now!</h2>
+                <h2 class="title2">What are you waiting for? Build your own Pokemon party right now!</h2>
                 <router-link to="/party" class="nav-item" style="text-decoration: none; color: inherit;">
                     <button>
                         Build your party

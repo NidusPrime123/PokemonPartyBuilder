@@ -2,7 +2,7 @@
     display: block;
     width: 100%;
     height: 100%;
-    background-image: url("../Pokeball-bg.png");
+    background-image: url("../img/Pokeball-bg.png");
     background-size: cover;
     justify-content: center;
 }

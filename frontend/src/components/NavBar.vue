@@ -1,7 +1,7 @@
 <template>
     <div class="nav-bar">
         <div class="left">
-            <img src="../assets/pokeball-transparent-png-2.png" alt="">
+            <img src="../assets/img/pokeball-transparent-png-2.png" alt="">
 
             
             <h1>Pokémon Party Builder</h1>
@@ -11,17 +11,17 @@
                 to="/" class="nav-item" 
                 style="text-decoration: none; color: inherit;"
             >
-                <img src="../assets/house_icon.png" alt="" class="home">
+                <img src="../assets/img/house_icon.png" alt="" class="home">
                 <h2>Home</h2>
             </router-link>
             <router-link 
                 to="/party" class="nav-item"
                 style="text-decoration: none; color: inherit;"
             >
-                <img src="../assets/party_icon.png" alt="" class="zoom">
+                <img src="../assets/img/party_icon.png" alt="" class="zoom">
                 <h2>Party</h2>
             </router-link>
-            <router-link 
+            <!-- <router-link 
                 to="/login" class="nav-item"
                 style="text-decoration: none; color: inherit;"
             >
@@ -34,7 +34,7 @@
             >
                 <img src="../assets/register_icon.png" alt="">
                 <h2>Register</h2>
-            </router-link>
+            </router-link> -->
         </div>
     </div>
 </template>

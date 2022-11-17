@@ -168,9 +168,9 @@
         <div id="selection-party-container">
             <div id="selection-container">
                 <div id="title">
-                    <img src="../assets/attribute2.png" alt="" class="attribute_list">
+                    <img src="../assets/img/attribute.png" alt="" class="attribute_list">
                     <h2>Pokemon Selection</h2>
-                    <img src="../assets/attribute2.png" alt="" class="attribute_list">
+                    <img src="../assets/img/gif_3.gif" alt="" class="attribute_list">
                 </div>
                 <div id="sort-container">
                     <div id="type-sort-ctn">
@@ -239,9 +239,9 @@
             </div>
             <div id="party-container">
                 <div id="title">
-                    <img src="../assets/house2_icon.png" alt="" class="invert">
+                    <img src="../assets/img/gif_2.gif" alt="" class="invert">
                     <h2>Your Party</h2>
-                    <img src="../assets/house2_icon.png" alt="">
+                    <img src="../assets/img/moltres_icon.png" alt="">
                 </div>
                 <PartyDisplay 
                     v-if="party.length > 0"

@@ -5,8 +5,9 @@
     <div id="page-ctn">
         <div id="content-ctn">
             <div id="title">
+                <img src="@/assets/img/register_icon.png" alt="">
                 <h1>Hello there, Trainer!</h1>
-                <img src="@/assets/pokedex.png" alt="">
+                <img src="@/assets/img/pokedex.png" alt="">
             </div>
             <div id="content">
                 <p>
@@ -17,7 +18,7 @@
                 <router-link to="/party" class="nav-item" style="text-decoration: none; color: inherit;">
                     <button>
                         Build your party
-                        <img src="@/assets/pokeball-transparent-png-2.png" alt="">
+                        <img src="@/assets/img/pokeball-transparent-png-2.png" alt="">
                     </button>
                 </router-link>
             </div>

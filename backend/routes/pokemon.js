@@ -13,17 +13,17 @@ router.get("/", async (req, res) => {
 })
 
 //get 1 Pokemon by id 
-router.get("/:pid", async (req, res) => {
-    try {
-        const pokemons = await knex('pokemon')
-            .where('pid', req.params.pid)
-            .select('*');
+// router.get("/:pid", async (req, res) => {
+//     try {
+//         const pokemons = await knex('pokemon')
+//             .where('pid', req.params.pid)
+//             .select('*');
 
-        return res.status(200).json( pokemons );
-    } catch (error) {
-        res.status(500).json(error)
-    } 
-})
+//         return res.status(200).json( pokemons );
+//     } catch (error) {
+//         res.status(500).json(error)
+//     } 
+// })
 
 //toggle favorite
 router.put("/:pid", async (req, res) => {

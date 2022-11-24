@@ -39,7 +39,7 @@
     </div>
 </template>
 <style scoped>
-.nav-bar {
+    .nav-bar {
         position: relative;
         top: 0;
         display: flex;

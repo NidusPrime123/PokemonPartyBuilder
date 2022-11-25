@@ -464,8 +464,8 @@
                         Load favorite party
                     </button>
                     <div v-if="toggleLoad">
-                        <button id="load-btn-slot">Slot 1</button>
-                        <button id="load-btn-slot">Slot 2</button>
+                        <button id="load-btn-slot" @click="loadParty(1)">Slot 1</button>
+                        <button id="load-btn-slot" @click="loadParty(2)">Slot 2</button>
                     </div>
                 </div>
             </div>

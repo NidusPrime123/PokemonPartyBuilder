@@ -27,7 +27,7 @@
                     const newPokemons = this.pokemons.filter(pokemon => {
                         return pokemon.type1 === this.type1Filter &&
                             pokemon.type2 === this.type2Filter &&
-                            pokemon.name.toLowerCase().includes(this.searchText.toLowerCase())
+                            pokemon.name.toLowerCase().startsWith(this.searchText.toLowerCase())
                     })
                     this.filteredPokemons = newPokemons
                     return;
@@ -41,14 +41,14 @@
                 } else if (this.type2Filter && this.searchText) {
                     const newPokemons = this.pokemons.filter(pokemon => {
                         return pokemon.type2 === this.type2Filter &&
-                            pokemon.name.toLowerCase().includes(this.searchText.toLowerCase())
+                            pokemon.name.toLowerCase().startsWith(this.searchText.toLowerCase())
                     })
                     this.filteredPokemons = newPokemons
                     return;
                 } else if (this.type1Filter && this.searchText) {
                     const newPokemons = this.pokemons.filter(pokemon => {
                         return pokemon.type1 === this.type1Filter &&
-                            pokemon.name.toLowerCase().includes(this.searchText.toLowerCase())
+                            pokemon.name.toLowerCase().startsWith(this.searchText.toLowerCase())
                     })
                     this.filteredPokemons = newPokemons
                     return;
@@ -66,7 +66,7 @@
                     return;
                 } else if (this.searchText) {
                     const newPokemons = this.pokemons.filter(pokemon =>
-                        pokemon.name.toLowerCase().includes(this.searchText.toLowerCase())
+                        pokemon.name.toLowerCase().startsWith(this.searchText.toLowerCase())
                     )
                     this.filteredPokemons = newPokemons
                     return;
@@ -80,7 +80,7 @@
                     const newPokemons = this.pokemons.filter(pokemon => {
                         return pokemon.type1 === this.type1Filter &&
                             pokemon.type2 === this.type2Filter &&
-                            pokemon.name.toLowerCase().includes(this.searchText.toLowerCase())
+                            pokemon.name.toLowerCase().startsWith(this.searchText.toLowerCase())
                     })
                     this.filteredPokemons = newPokemons
                     return;
@@ -94,14 +94,14 @@
                 } else if (this.type2Filter && this.searchText) {
                     const newPokemons = this.pokemons.filter(pokemon => {
                         return pokemon.type2 === this.type2Filter &&
-                            pokemon.name.toLowerCase().includes(this.searchText.toLowerCase())
+                            pokemon.name.toLowerCase().startsWith(this.searchText.toLowerCase())
                     })
                     this.filteredPokemons = newPokemons
                     return;
                 } else if (this.type1Filter && this.searchText) {
                     const newPokemons = this.pokemons.filter(pokemon => {
                         return pokemon.type1 === this.type1Filter &&
-                            pokemon.name.toLowerCase().includes(this.searchText.toLowerCase())
+                            pokemon.name.toLowerCase().startsWith(this.searchText.toLowerCase())
                     })
                     this.filteredPokemons = newPokemons
                     return;
@@ -119,7 +119,7 @@
                     return;
                 } else if (this.searchText) {
                     const newPokemons = this.pokemons.filter(pokemon =>
-                        pokemon.name.toLowerCase().includes(this.searchText.toLowerCase())
+                        pokemon.name.toLowerCase().startsWith(this.searchText.toLowerCase())
                     )
                     this.filteredPokemons = newPokemons
                     return;
@@ -133,7 +133,7 @@
                     const newPokemons = this.pokemons.filter(pokemon => {
                         return pokemon.type1 === this.type1Filter &&
                             pokemon.type2 === this.type2Filter &&
-                            pokemon.name.toLowerCase().includes(this.searchText.toLowerCase())
+                            pokemon.name.toLowerCase().startsWith(this.searchText.toLowerCase())
                     })
                     this.filteredPokemons = newPokemons
                     return;
@@ -147,14 +147,14 @@
                 } else if (this.type2Filter && this.searchText) {
                     const newPokemons = this.pokemons.filter(pokemon => {
                         return pokemon.type2 === this.type2Filter &&
-                            pokemon.name.toLowerCase().includes(this.searchText.toLowerCase())
+                            pokemon.name.toLowerCase().startsWith(this.searchText.toLowerCase())
                     })
                     this.filteredPokemons = newPokemons
                     return;
                 } else if (this.type1Filter && this.searchText) {
                     const newPokemons = this.pokemons.filter(pokemon => {
                         return pokemon.type1 === this.type1Filter &&
-                            pokemon.name.toLowerCase().includes(this.searchText.toLowerCase())
+                            pokemon.name.toLowerCase().startsWith(this.searchText.toLowerCase())
                     })
                     this.filteredPokemons = newPokemons
                     return;
@@ -172,7 +172,7 @@
                     return;
                 } else if (this.searchText) {
                     const newPokemons = this.pokemons.filter(pokemon =>
-                        pokemon.name.toLowerCase().includes(this.searchText.toLowerCase())
+                        pokemon.name.toLowerCase().startsWith(this.searchText.toLowerCase())
                     )
                     this.filteredPokemons = newPokemons
                     return;
@@ -346,8 +346,13 @@
                             v-model="type1Filter" 
                             :class=type1Filter.toLowerCase()
                         >
-                            <option value="" disabled selected>-- Select a primary typing --</option>
-                            <option value=""> All</option>
+                            <option 
+                                value="" :style="{ 'background-color': 'white' }" 
+                                disabled selected
+                            >
+                                -- Select a primary typing --
+                            </option>
+                            <option value="" :style="{ 'background-color': 'white' }">All</option>
                             <option class="normal" value="Normal">Normal</option>
                             <option class='fire' value="Fire">Fire</option>
                             <option class='water' value="Water">Water</option>
@@ -371,8 +376,13 @@
                             v-model="type2Filter"   
                             :class=type2Filter.toLowerCase()
                         >
-                            <option value="" disabled selected>-- Select a secondary typing --</option>
-                            <option value="">All</option>
+                            <option 
+                                value="" :style="{ 'background-color': 'white' }" 
+                                disabled selected
+                            >
+                                -- Select a secondary typing --
+                            </option>
+                            <option value="None" :style="{ 'background-color': 'white' }">All</option>
                             <option class="normal" value="Normal">Normal</option>
                             <option class='fire' value="Fire">Fire</option>
                             <option class='water' value="Water">Water</option>

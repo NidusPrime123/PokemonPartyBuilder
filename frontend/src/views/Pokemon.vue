@@ -382,7 +382,7 @@
                             >
                                 -- Select a secondary typing --
                             </option>
-                            <option value="None" :style="{ 'background-color': 'white' }">All</option>
+                            <option value="" :style="{ 'background-color': 'white' }">All</option>
                             <option class="normal" value="Normal">Normal</option>
                             <option class='fire' value="Fire">Fire</option>
                             <option class='water' value="Water">Water</option>
